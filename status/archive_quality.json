@@ -1,0 +1,575 @@
+{
+  "checked_at": "2026-10-26T22:55:19+08:00",
+  "upstream_commit": "f9dd90f230b0f767964caf5a9f83a350a3404e62",
+  "csv_files_with_issues": 92,
+  "csv_rows_with_issues": 20820,
+  "json_files_with_issues": 1,
+  "json_rows_with_issues": 1,
+  "policy": "Preserve upstream bytes; flagged CSVs are not analysis-ready. Prefer corresponding JSON.",
+  "files": [
+    {
+      "path": "2022-10/长江_三峡水库.csv",
+      "issue_rows": 101,
+      "first_issue_line": 4,
+      "header_valid": true
+    },
+    {
+      "path": "2022-10/长江_茅坪(二).csv",
+      "issue_rows": 1,
+      "first_issue_line": 648,
+      "header_valid": true
+    },
+    {
+      "path": "2022-11/长江_三峡水库.csv",
+      "issue_rows": 118,
+      "first_issue_line": 4,
+      "header_valid": true
+    },
+    {
+      "path": "2022-11/长江_茅坪(二).csv",
+      "issue_rows": 2,
+      "first_issue_line": 300,
+      "header_valid": true
+    },
+    {
+      "path": "2022-12/长江_三峡水库.csv",
+      "issue_rows": 122,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2022-12/长江_茅坪(二).csv",
+      "issue_rows": 1,
+      "first_issue_line": 724,
+      "header_valid": true
+    },
+    {
+      "path": "2023-01/长江_三峡水库.csv",
+      "issue_rows": 124,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2023-01/长江_寸滩.csv",
+      "issue_rows": 429,
+      "first_issue_line": 3,
+      "header_valid": true
+    },
+    {
+      "path": "2023-01/长江_茅坪(二).csv",
+      "issue_rows": 3,
+      "first_issue_line": 124,
+      "header_valid": true
+    },
+    {
+      "path": "2023-02/长江_三峡水库.csv",
+      "issue_rows": 110,
+      "first_issue_line": 10,
+      "header_valid": true
+    },
+    {
+      "path": "2023-02/长江_茅坪(二).csv",
+      "issue_rows": 1,
+      "first_issue_line": 98,
+      "header_valid": true
+    },
+    {
+      "path": "2023-03/长江_三峡水库.csv",
+      "issue_rows": 121,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2023-04/长江_三峡水库.csv",
+      "issue_rows": 120,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2023-05/长江_三峡水库.csv",
+      "issue_rows": 121,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2023-06/长江_三峡水库.csv",
+      "issue_rows": 118,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2023-07/长江_三峡水库.csv",
+      "issue_rows": 122,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2023-08/长江_三峡水库.csv",
+      "issue_rows": 109,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2023-09/长江_三峡水库.csv",
+      "issue_rows": 118,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2023-10/长江_三峡水库.csv",
+      "issue_rows": 124,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2023-11/长江_三峡水库.csv",
+      "issue_rows": 120,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2023-12/长江_三峡水库.csv",
+      "issue_rows": 41,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2023-12/长江干流_三峡水库.csv",
+      "issue_rows": 78,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2024-01/长江干流_三峡水库.csv",
+      "issue_rows": 124,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2024-02/长江干流_三峡水库.csv",
+      "issue_rows": 115,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2024-03/长江干流_三峡水库.csv",
+      "issue_rows": 123,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2024-04/长江干流_三峡水库.csv",
+      "issue_rows": 116,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2024-05/长江干流_三峡水库.csv",
+      "issue_rows": 124,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2024-06/长江干流_三峡水库.csv",
+      "issue_rows": 120,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2024-07/长江干流_三峡水库.csv",
+      "issue_rows": 150,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2024-08/长江干流_三峡水库.csv",
+      "issue_rows": 140,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2024-09/长江干流_三峡水库.csv",
+      "issue_rows": 137,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2024-10/长江干流_三峡水库.csv",
+      "issue_rows": 135,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2024-11/汉江_丹江口水库.csv",
+      "issue_rows": 118,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2024-11/长江干流_三峡水库.csv",
+      "issue_rows": 120,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2024-12/汉江_丹江口水库.csv",
+      "issue_rows": 122,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2024-12/长江干流_三峡水库.csv",
+      "issue_rows": 123,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2025-01/汉江_丹江口水库.csv",
+      "issue_rows": 124,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2025-01/长江干流_三峡水库.csv",
+      "issue_rows": 124,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2025-02/汉江_丹江口水库.csv",
+      "issue_rows": 111,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2025-02/长江干流_三峡水库.csv",
+      "issue_rows": 111,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2025-03/汉江_丹江口水库.csv",
+      "issue_rows": 123,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2025-03/长江干流_三峡水库.csv",
+      "issue_rows": 122,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2025-04/乌江_武隆.csv",
+      "issue_rows": 397,
+      "first_issue_line": 63,
+      "header_valid": true
+    },
+    {
+      "path": "2025-04/汉江_丹江口水库.csv",
+      "issue_rows": 561,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2025-04/汉江_龙王庙.csv",
+      "issue_rows": 521,
+      "first_issue_line": 63,
+      "header_valid": true
+    },
+    {
+      "path": "2025-04/洞庭湖湖口_七里山.csv",
+      "issue_rows": 550,
+      "first_issue_line": 62,
+      "header_valid": true
+    },
+    {
+      "path": "2025-04/鄱阳湖_湖口.csv",
+      "issue_rows": 591,
+      "first_issue_line": 4,
+      "header_valid": true
+    },
+    {
+      "path": "2025-04/长江_茅坪(二).csv",
+      "issue_rows": 513,
+      "first_issue_line": 64,
+      "header_valid": true
+    },
+    {
+      "path": "2025-04/长江干流_三峡水库.csv",
+      "issue_rows": 561,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2025-04/长江干流_九江.csv",
+      "issue_rows": 550,
+      "first_issue_line": 62,
+      "header_valid": true
+    },
+    {
+      "path": "2025-04/长江干流_大通.csv",
+      "issue_rows": 549,
+      "first_issue_line": 62,
+      "header_valid": true
+    },
+    {
+      "path": "2025-04/长江干流_宜昌.csv",
+      "issue_rows": 514,
+      "first_issue_line": 63,
+      "header_valid": true
+    },
+    {
+      "path": "2025-04/长江干流_寸滩.csv",
+      "issue_rows": 401,
+      "first_issue_line": 63,
+      "header_valid": true
+    },
+    {
+      "path": "2025-04/长江干流_汉口.csv",
+      "issue_rows": 546,
+      "first_issue_line": 63,
+      "header_valid": true
+    },
+    {
+      "path": "2025-04/长江干流_沙市.csv",
+      "issue_rows": 524,
+      "first_issue_line": 63,
+      "header_valid": true
+    },
+    {
+      "path": "2025-04/长江干流_莲花塘.csv",
+      "issue_rows": 547,
+      "first_issue_line": 62,
+      "header_valid": true
+    },
+    {
+      "path": "2025-06/长江干流_三峡水库.csv",
+      "issue_rows": 118,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2025-07/乌江_武隆.csv",
+      "issue_rows": 472,
+      "first_issue_line": 132,
+      "header_valid": true
+    },
+    {
+      "path": "2025-07/汉江_龙王庙.csv",
+      "issue_rows": 498,
+      "first_issue_line": 158,
+      "header_valid": true
+    },
+    {
+      "path": "2025-07/洞庭湖湖口_七里山.csv",
+      "issue_rows": 494,
+      "first_issue_line": 159,
+      "header_valid": true
+    },
+    {
+      "path": "2025-07/鄱阳湖_湖口.csv",
+      "issue_rows": 484,
+      "first_issue_line": 128,
+      "header_valid": true
+    },
+    {
+      "path": "2025-07/长江_茅坪(二).csv",
+      "issue_rows": 461,
+      "first_issue_line": 157,
+      "header_valid": true
+    },
+    {
+      "path": "2025-07/长江干流_三峡水库.csv",
+      "issue_rows": 496,
+      "first_issue_line": 3,
+      "header_valid": true
+    },
+    {
+      "path": "2025-07/长江干流_九江.csv",
+      "issue_rows": 488,
+      "first_issue_line": 143,
+      "header_valid": true
+    },
+    {
+      "path": "2025-07/长江干流_大通.csv",
+      "issue_rows": 488,
+      "first_issue_line": 140,
+      "header_valid": true
+    },
+    {
+      "path": "2025-07/长江干流_宜昌.csv",
+      "issue_rows": 486,
+      "first_issue_line": 155,
+      "header_valid": true
+    },
+    {
+      "path": "2025-07/长江干流_寸滩.csv",
+      "issue_rows": 472,
+      "first_issue_line": 132,
+      "header_valid": true
+    },
+    {
+      "path": "2025-07/长江干流_汉口.csv",
+      "issue_rows": 488,
+      "first_issue_line": 142,
+      "header_valid": true
+    },
+    {
+      "path": "2025-07/长江干流_沙市.csv",
+      "issue_rows": 483,
+      "first_issue_line": 156,
+      "header_valid": true
+    },
+    {
+      "path": "2025-07/长江干流_莲花塘.csv",
+      "issue_rows": 492,
+      "first_issue_line": 158,
+      "header_valid": true
+    },
+    {
+      "path": "2025-10/长江干流_三峡水库.csv",
+      "issue_rows": 122,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2025-11/长江干流_三峡水库.csv",
+      "issue_rows": 118,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2025-11/长江干流_宜昌.csv",
+      "issue_rows": 629,
+      "first_issue_line": 3,
+      "header_valid": true
+    },
+    {
+      "path": "2025-12/汉江_丹江口水库.csv",
+      "issue_rows": 122,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2025-12/长江干流_三峡水库.csv",
+      "issue_rows": 123,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2026-01/汉江_丹江口水库.csv",
+      "issue_rows": 120,
+      "first_issue_line": 5,
+      "header_valid": true
+    },
+    {
+      "path": "2026-01/长江干流_三峡水库.csv",
+      "issue_rows": 115,
+      "first_issue_line": 4,
+      "header_valid": true
+    },
+    {
+      "path": "2026-02/汉江_丹江口水库.csv",
+      "issue_rows": 86,
+      "first_issue_line": 4,
+      "header_valid": true
+    },
+    {
+      "path": "2026-02/长江干流_三峡水库.csv",
+      "issue_rows": 80,
+      "first_issue_line": 4,
+      "header_valid": true
+    },
+    {
+      "path": "2026-03/汉江_丹江口水库.csv",
+      "issue_rows": 83,
+      "first_issue_line": 4,
+      "header_valid": true
+    },
+    {
+      "path": "2026-03/长江干流_三峡水库.csv",
+      "issue_rows": 78,
+      "first_issue_line": 4,
+      "header_valid": true
+    },
+    {
+      "path": "2026-04/汉江_丹江口水库.csv",
+      "issue_rows": 73,
+      "first_issue_line": 4,
+      "header_valid": true
+    },
+    {
+      "path": "2026-04/长江干流_三峡水库.csv",
+      "issue_rows": 71,
+      "first_issue_line": 4,
+      "header_valid": true
+    },
+    {
+      "path": "2026-05/汉江_丹江口水库.csv",
+      "issue_rows": 50,
+      "first_issue_line": 4,
+      "header_valid": true
+    },
+    {
+      "path": "2026-05/长江干流_三峡水库.csv",
+      "issue_rows": 47,
+      "first_issue_line": 4,
+      "header_valid": true
+    },
+    {
+      "path": "2026-06/汉江_丹江口水库.csv",
+      "issue_rows": 37,
+      "first_issue_line": 4,
+      "header_valid": true
+    },
+    {
+      "path": "2026-06/长江干流_三峡水库.csv",
+      "issue_rows": 37,
+      "first_issue_line": 4,
+      "header_valid": true
+    },
+    {
+      "path": "2026-07/汉江_丹江口水库.csv",
+      "issue_rows": 77,
+      "first_issue_line": 8,
+      "header_valid": true
+    },
+    {
+      "path": "2026-07/长江干流_三峡水库.csv",
+      "issue_rows": 63,
+      "first_issue_line": 8,
+      "header_valid": true
+    },
+    {
+      "path": "2026-08/长江干流_三峡水库.csv",
+      "issue_rows": 90,
+      "first_issue_line": 4,
+      "header_valid": true
+    },
+    {
+      "path": "2026-09/长江干流_三峡水库.csv",
+      "issue_rows": 24,
+      "first_issue_line": 6,
+      "header_valid": true
+    },
+    {
+      "path": "2026-09/长江干流_沙市.csv",
+      "issue_rows": 144,
+      "first_issue_line": 4,
+      "header_valid": true
+    }
+  ],
+  "json_files": [
+    {
+      "path": "2025-08/LongRiver.json",
+      "issue_rows": 1,
+      "examples": [
+        {
+          "station": "./data/2025-08/长江_茅坪(二)",
+          "record_index": 597
+        }
+      ]
+    }
+  ]
+}
