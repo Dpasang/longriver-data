@@ -1,0 +1,59 @@
+name: Daily LongRiver Data
+
+on:
+  schedule:
+    # UTC 00:30 = Asia/Shanghai 08:30; GitHub may delay the start.
+    - cron: '30 0 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - collect.py
+      - tests/**
+      - .github/workflows/daily.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-longriver-data
+  cancel-in-progress: false
+
+jobs:
+  archive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out private repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Run offline validation tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Check out upstream public data
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: cxumol/LongRiver
+          ref: master
+          path: .upstream
+          persist-credentials: false
+          sparse-checkout: data
+      - name: Record upstream revision
+        run: echo "UPSTREAM_COMMIT=$(git -C .upstream rev-parse HEAD)" >> "$GITHUB_ENV"
+      - name: Sync archive and collect current stations
+        id: collect
+        continue-on-error: true
+        run: python3 collect.py
+      - name: Commit data and run status
+        if: always() && steps.collect.outcome != 'skipped'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for folder in data snapshots latest status; do
+            if [ -d "$folder" ]; then git add -- "$folder"; fi
+          done
+          if ! git diff --cached --quiet; then
+            git commit -m "data: daily LongRiver archive $(TZ=Asia/Shanghai date +%F)"
+            git push origin HEAD:main
+          fi
+      - name: Report collection failure
+        if: steps.collect.outcome == 'failure'
+        run: exit 1
