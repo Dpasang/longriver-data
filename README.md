@@ -2,6 +2,10 @@
 
 基于 [cxumol/LongRiver](https://github.com/cxumol/LongRiver) 创建，保留上游 MIT 许可和出处。仓库为私有，默认每天北京时间 **08:30** 自动运行，也可在 Actions → Daily LongRiver Data → Run workflow 手动执行。GitHub 可能延迟启动。
 
+## 首次运行核验（2026-10-26）
+
+[完整运行已通过](https://github.com/Dpasang/longriver-data/actions/runs/40344115057)。从源站获得14站观测，观测时间均为北京时间2026-10-26 22:00。上游1,175个历史数据文件（133,468,338字节）均已导入，Git文件哈希逐一一致。历史CSV中92个文件、20,820行被标记为行结构或时间字段异常，另有1条JSON缺测时间；这些原始文件未被修改。此处为首次核验快照，后续状态以status/中的报告为准。
+
 ## 每天做什么
 
 1. 下载上游 `master` 分支当前的数据文件，仅同步数据，不执行上游代码。
