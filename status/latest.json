@@ -1,0 +1,10 @@
+{
+  "captured_at": "2026-10-26T22:40:05+08:00",
+  "fresh": false,
+  "source_url": "http://www.cjh.com.cn/sqindex.html",
+  "upstream_repository": "https://github.com/cxumol/LongRiver",
+  "upstream_commit": "f9dd90f230b0f767964caf5a9f83a350a3404e62",
+  "max_age_hours": 48,
+  "error_type": "ValueError",
+  "error": "Malformed archive CSV row"
+}
