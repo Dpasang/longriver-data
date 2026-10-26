@@ -63,7 +63,8 @@ def archive_upstream(source, destination, now):
     if not files:
         raise ValueError('Upstream has no archive data')
     csv_rows = 0
-    # Validate every file before replacing any archived file.
+    quality_files = []
+    # Reject unreadable JSON before copying; preserve legacy CSV bytes with flags.
     for file in files:
         if file.is_symlink():
             raise ValueError('Symlink in upstream data')
@@ -76,13 +77,24 @@ def archive_upstream(source, destination, now):
         else:
             with file.open(encoding='utf-8-sig', newline='') as stream:
                 reader = csv.DictReader(stream)
-                if not reader.fieldnames or not {'rvnm', 'stnm', 'tm'}.issubset(reader.fieldnames):
-                    raise ValueError('Archive CSV missing station/time headers')
+                header_valid = bool(reader.fieldnames) and {'rvnm', 'stnm', 'tm'}.issubset(reader.fieldnames)
+                issues = 0
+                first_line = None
                 for row in reader:
-                    if None in row or any(row.get(k) in (None, '') for k in ('rvnm', 'stnm', 'tm')):
-                        raise ValueError('Malformed archive CSV row')
-                    observed_at(row)
+                    invalid = not header_valid or None in row or any(row.get(k) in (None, '') for k in ('rvnm', 'stnm', 'tm'))
+                    if not invalid:
+                        try:
+                            observed_at(row)
+                        except ValueError:
+                            invalid = True
+                    if invalid:
+                        issues += 1
+                        first_line = first_line or reader.line_num
                     csv_rows += 1
+                if issues or not header_valid:
+                    quality_files.append({'path': file.relative_to(source).as_posix(),
+                                          'issue_rows': issues, 'first_issue_line': first_line,
+                                          'header_valid': header_valid})
     for file in files:
         target = destination / 'data' / file.relative_to(source)
         target.parent.mkdir(parents=True, exist_ok=True)
@@ -91,10 +103,22 @@ def archive_upstream(source, destination, now):
         temporary = target.with_name(target.name + '.tmp')
         shutil.copyfile(file, temporary)
         temporary.replace(target)
+    issue_rows = sum(item['issue_rows'] for item in quality_files)
+    write_json(destination / 'status/archive_quality.json', {
+        'checked_at': now.astimezone(LOCAL).isoformat(timespec='seconds'),
+        'upstream_commit': os.environ.get('UPSTREAM_COMMIT'),
+        'csv_files_with_issues': len(quality_files),
+        'csv_rows_with_issues': issue_rows,
+        'policy': 'Preserve upstream bytes; flagged CSVs are not analysis-ready. Prefer corresponding JSON.',
+        'files': quality_files,
+    })
     return {
         'archive_file_count': len(files),
         'archive_bytes': sum(p.stat().st_size for p in files),
         'archive_csv_rows': csv_rows,
+        'archive_validation': 'structural_warnings' if quality_files else 'passed',
+        'archive_csv_files_with_issues': len(quality_files),
+        'archive_csv_rows_with_issues': issue_rows,
         'archive_months': sorted({p.relative_to(source).parts[0] for p in files}),
     }
 

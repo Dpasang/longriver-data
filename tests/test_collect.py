@@ -1,6 +1,7 @@
 import json
 import tempfile
 import unittest
+from unittest.mock import patch
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -23,6 +24,12 @@ def upstream(folder, rows=None):
 
 
 class CollectorTests(unittest.TestCase):
+    def setUp(self):
+        # Offline scenarios must not populate the real GitHub run summary.
+        self.environment = patch.dict('os.environ', {'GITHUB_STEP_SUMMARY': ''})
+        self.environment.start()
+        self.addCleanup(self.environment.stop)
+
     def test_extract_multiline_json_and_preserve_values(self):
         row = record()
         rows = collect.parse_page('<script>var sssq =\n' + json.dumps([row]) + ';\nvar x=1;</script>')
@@ -93,6 +100,23 @@ class CollectorTests(unittest.TestCase):
             self.assertEqual(collect.run(root, src, lambda:'', NOW), 1)
             self.assertEqual((root/'data/keep.txt').read_text(encoding='utf-8'), 'keep')
             self.assertFalse((root/'data/2026-10/LongRiver.json').exists())
+
+    def test_legacy_variable_width_csv_is_preserved_and_flagged(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root, src = Path(tmp)/'out', Path(tmp)/'upstream'
+            upstream(src)
+            file = src/'data/2026-10/长江干流_汉口.csv'
+            original = 'q,rvnm,stcd,stnm,tm,wptn,z\n6730,11000,长江,60106980,三峡水库,1664560800000,5,153.480\n'
+            file.write_text(original, encoding='utf-8')
+            result = collect.run(root, src, lambda:'var sssq = ' + json.dumps([record()]) + ';', NOW)
+            self.assertEqual(result, 0)
+            self.assertEqual((root/'data/2026-10/长江干流_汉口.csv').read_bytes(), file.read_bytes())
+            report = json.loads((root/'status/archive_quality.json').read_text(encoding='utf-8'))
+            self.assertEqual(report['csv_files_with_issues'], 1)
+            self.assertEqual(report['csv_rows_with_issues'], 1)
+            status = json.loads((root/'status/latest.json').read_text(encoding='utf-8'))
+            self.assertEqual(status['archive_validation'], 'structural_warnings')
+            self.assertTrue(status['fresh'])
 
 
 if __name__ == '__main__':
