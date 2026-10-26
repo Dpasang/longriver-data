@@ -64,6 +64,7 @@ def archive_upstream(source, destination, now):
         raise ValueError('Upstream has no archive data')
     csv_rows = 0
     quality_files = []
+    json_quality_files = []
     # Reject unreadable JSON before copying; preserve legacy CSV bytes with flags.
     for file in files:
         if file.is_symlink():
@@ -72,8 +73,21 @@ def archive_upstream(source, destination, now):
             payload = json.loads(file.read_text(encoding='utf-8-sig'))
             if not isinstance(payload, dict):
                 raise ValueError('Archive JSON is not a station mapping')
-            for rows in payload.values():
-                validate_records(rows, now, fresh=False)
+            json_issues = 0
+            examples = []
+            for station, rows in payload.items():
+                if not isinstance(rows, list):
+                    raise ValueError('Archive station records are not an array')
+                for index, row in enumerate(rows):
+                    try:
+                        validate_records([row], now, fresh=False)
+                    except ValueError:
+                        json_issues += 1
+                        if len(examples) < 3:
+                            examples.append({'station': station, 'record_index': index})
+            if json_issues:
+                json_quality_files.append({'path': file.relative_to(source).as_posix(),
+                                           'issue_rows': json_issues, 'examples': examples})
         else:
             with file.open(encoding='utf-8-sig', newline='') as stream:
                 reader = csv.DictReader(stream)
@@ -109,16 +123,20 @@ def archive_upstream(source, destination, now):
         'upstream_commit': os.environ.get('UPSTREAM_COMMIT'),
         'csv_files_with_issues': len(quality_files),
         'csv_rows_with_issues': issue_rows,
+        'json_files_with_issues': len(json_quality_files),
+        'json_rows_with_issues': sum(item['issue_rows'] for item in json_quality_files),
         'policy': 'Preserve upstream bytes; flagged CSVs are not analysis-ready. Prefer corresponding JSON.',
         'files': quality_files,
+        'json_files': json_quality_files,
     })
     return {
         'archive_file_count': len(files),
         'archive_bytes': sum(p.stat().st_size for p in files),
         'archive_csv_rows': csv_rows,
-        'archive_validation': 'structural_warnings' if quality_files else 'passed',
+        'archive_validation': 'structural_warnings' if quality_files or json_quality_files else 'passed',
         'archive_csv_files_with_issues': len(quality_files),
         'archive_csv_rows_with_issues': issue_rows,
+        'archive_json_rows_with_issues': sum(item['issue_rows'] for item in json_quality_files),
         'archive_months': sorted({p.relative_to(source).parts[0] for p in files}),
     }
 
@@ -131,7 +149,18 @@ def latest_upstream(source, now):
     if not isinstance(payload, dict):
         raise ValueError('Invalid upstream station mapping')
     # Only each station's newest record is needed for the fallback snapshot.
-    records = [max(rows, key=observed_at) for rows in payload.values() if rows]
+    records = []
+    for rows in payload.values():
+        valid = []
+        for row in rows:
+            try:
+                validate_records([row], now, fresh=False)
+                valid.append(row)
+            except ValueError:
+                continue
+        if not valid:
+            raise ValueError('An upstream station has no valid observation timestamp')
+        records.append(max(valid, key=observed_at))
     return validate_records(records, now)
 
 

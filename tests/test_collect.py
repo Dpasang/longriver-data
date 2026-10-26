@@ -1,4 +1,6 @@
 import json
+import contextlib
+import io
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -29,6 +31,9 @@ class CollectorTests(unittest.TestCase):
         self.environment = patch.dict('os.environ', {'GITHUB_STEP_SUMMARY': ''})
         self.environment.start()
         self.addCleanup(self.environment.stop)
+        self.output = contextlib.redirect_stdout(io.StringIO())
+        self.output.__enter__()
+        self.addCleanup(self.output.__exit__, None, None, None)
 
     def test_extract_multiline_json_and_preserve_values(self):
         row = record()
@@ -117,6 +122,24 @@ class CollectorTests(unittest.TestCase):
             status = json.loads((root/'status/latest.json').read_text(encoding='utf-8'))
             self.assertEqual(status['archive_validation'], 'structural_warnings')
             self.assertTrue(status['fresh'])
+
+    def test_missing_historical_json_time_is_preserved_and_flagged(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root, src = Path(tmp)/'out', Path(tmp)/'upstream'
+            upstream(src, [record(), dict(record(), tm='-')])
+            self.assertEqual(collect.run(root, src, lambda:'var sssq = ' + json.dumps([record()]) + ';', NOW), 0)
+            report = json.loads((root/'status/archive_quality.json').read_text(encoding='utf-8'))
+            self.assertEqual(report['json_rows_with_issues'], 1)
+            self.assertEqual((root/'data/2026-10/LongRiver.json').read_bytes(), (src/'data/2026-10/LongRiver.json').read_bytes())
+
+    def test_fallback_uses_valid_timestamp_without_altering_archive(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root, src = Path(tmp)/'out', Path(tmp)/'upstream'
+            upstream(src, [record(), dict(record(), tm='-')])
+            self.assertEqual(collect.run(root, src, lambda:'unavailable', NOW), 0)
+            snapshot = json.loads((root/'latest/data.json').read_text(encoding='utf-8'))
+            self.assertEqual(snapshot['records'], [record()])
+            self.assertEqual(snapshot['source'], 'upstream_fallback')
 
 
 if __name__ == '__main__':
