@@ -1,8 +1,8 @@
 {
-  "checked_at": "2026-11-20T15:33:39+08:00",
-  "upstream_commit": "059e05768c5073eaff707917bcf87d3fa0be8ad4",
-  "csv_files_with_issues": 92,
-  "csv_rows_with_issues": 20820,
+  "checked_at": "2026-11-21T15:29:21+08:00",
+  "upstream_commit": "75e13416f386212880ef813ef7c923f3cb188417",
+  "csv_files_with_issues": 93,
+  "csv_rows_with_issues": 20821,
   "json_files_with_issues": 1,
   "json_rows_with_issues": 1,
   "policy": "Preserve upstream bytes; flagged CSVs are not analysis-ready. Prefer corresponding JSON.",
@@ -557,6 +557,12 @@
       "path": "2026-09/长江干流_沙市.csv",
       "issue_rows": 144,
       "first_issue_line": 4,
+      "header_valid": true
+    },
+    {
+      "path": "2026-11/长江干流_三峡水库.csv",
+      "issue_rows": 1,
+      "first_issue_line": 54,
       "header_valid": true
     }
   ],
