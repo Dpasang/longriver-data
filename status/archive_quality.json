@@ -1,6 +1,6 @@
 {
-  "checked_at": "2026-11-24T18:10:31+08:00",
-  "upstream_commit": "6ee78d929003a73f29c5ebfda5e3059ae6b29b33",
+  "checked_at": "2026-11-25T16:55:20+08:00",
+  "upstream_commit": "2127309146dc2740a2cd2d4e8ee5e1fdebe77c38",
   "csv_files_with_issues": 93,
   "csv_rows_with_issues": 20821,
   "json_files_with_issues": 1,
